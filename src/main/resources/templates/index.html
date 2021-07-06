@@ -1,7 +1,14 @@
 <div th:insert="/common/header :: header"></div>
 
 
-
-
+<div th:each = "post: ${postlist}">
+    <div class="card m-2" style="">
+        <div class="card-body">
+            <h4 class="card-title" th:text = "${post.title}"></h4>
+            <h4 class="card-title" th:text = "${post.id}"></h4>
+            <a th:href="@{post/}+${post.id}" class="btn btn-primary">상세보기</a>
+        </div>
+    </div>
+</div>
 
 <div th:insert="/common/footer :: footer"></div>
