@@ -2,9 +2,10 @@
 
 <div class="container">
 
-    <div th:if = "${param.error}">
-        뭔가잘못됨
+    <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+        <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
     </div>
+
 
     <form th:action = "@{/auth/userLogin}" method = "post">
         <div class="form-group">

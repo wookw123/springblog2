@@ -31,3 +31,8 @@ spring:
     suffix: .html
     cache: false
 
+    security:
+      user:
+        name: test
+        password: user
+
