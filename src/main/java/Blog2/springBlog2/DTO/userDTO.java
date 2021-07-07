@@ -2,7 +2,10 @@ package Blog2.springBlog2.DTO;
 
 import Blog2.springBlog2.model.User;
 
+import java.lang.reflect.Member;
+
 public class userDTO {
+
 
     private String username;
     private String password;
@@ -10,7 +13,8 @@ public class userDTO {
     private String phone;
     private String address;
 
-    public userDTO(String username, String password, String email, String phone, String address) {
+    public userDTO( String username, String password, String email, String phone, String address) {
+
         this.username = username;
         this.password = password;
         this.email = email;
@@ -21,7 +25,7 @@ public class userDTO {
     @Override
     public String toString() {
         return "userDTO{" +
-                "username='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
@@ -29,7 +33,10 @@ public class userDTO {
                 '}';
     }
 
-    public User toEntity() {
+    public User toEntity(){
         return new User(username,password,email,phone,address);
     }
+
+
+
 }

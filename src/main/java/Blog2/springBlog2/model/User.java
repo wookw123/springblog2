@@ -96,7 +96,8 @@ public class User {
         this.updateDate = updateDate;
     }
 
-    public User(String username, String password, String email, String phone, String address) {
+    public User( String username, String password, String email, String phone, String address) {
+
         this.username = username;
         this.password = password;
         this.email = email;
