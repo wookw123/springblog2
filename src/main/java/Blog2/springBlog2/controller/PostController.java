@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
-public class postController {
+public class PostController {
 
     private final PostService postService;
 
-    public postController(PostService postService) {
+    public PostController(PostService postService) {
         this.postService = postService;
     }
 
@@ -26,6 +26,8 @@ public class postController {
         model.addAttribute("postlist" , postService.Postlist(pageable)); //글 목록
         return "index";
     }
+
+
 
     @GetMapping("/post/{id}")
     public String postdetail(@PathVariable int id, Model model){

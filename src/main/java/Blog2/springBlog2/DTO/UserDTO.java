@@ -4,7 +4,8 @@ import Blog2.springBlog2.model.User;
 
 import java.lang.reflect.Member;
 
-public class userDTO {
+
+public class UserDTO {
 
 
     private String username;
@@ -13,7 +14,7 @@ public class userDTO {
     private String phone;
     private String address;
 
-    public userDTO( String username, String password, String email, String phone, String address) {
+    public UserDTO(String username, String password, String email, String phone, String address) {
 
         this.username = username;
         this.password = password;
@@ -33,9 +34,21 @@ public class userDTO {
                 '}';
     }
 
-    public User toEntity(){
+    public User toJoin(){
         return new User(username,password,email,phone,address);
     }
+
+    public User toLogin(){
+        return new User(username,password);
+    }
+
+
+
+
+
+
+
+
 
 
 
