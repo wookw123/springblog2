@@ -4,6 +4,7 @@ import Blog2.springBlog2.model.User;
 import Blog2.springBlog2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -20,21 +21,21 @@ public class UserService {
     private PasswordEncoder passwordEncoder;*/
 
     @Transactional
-    public void Join(User user){ //User회원가입
+    public void Join(User user) { //User회원가입
 //        String encodedPassword =  passwordEncoder.encode(user.getPassword()); //암호화
 //        user.setPassword(encodedPassword);
         userRepository.save(user);//입력받은 정보를 저장
     }
 
+    @Transactional
+    public boolean Login(User user){
+       user =  userRepository.login(user.getUsername(),user.getPassword());
 
-
-
-
-
-
-
-
-
+       if (user != null){
+           return true;
+       }
+        return false;
+    }
 
 
 }

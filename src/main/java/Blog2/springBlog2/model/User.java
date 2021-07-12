@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+
 public class User {
 
     @Id
@@ -31,6 +32,10 @@ public class User {
 
     @CreationTimestamp
     private Timestamp updateDate;
+
+    public User() {
+
+    }
 
     public int getId() {
         return id;
