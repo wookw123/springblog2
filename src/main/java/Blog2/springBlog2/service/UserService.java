@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Service
 public class UserService {
 
@@ -20,16 +23,44 @@ public class UserService {
    /* @Autowired
     private PasswordEncoder passwordEncoder;*/
 
+    //MD5 암호화 하기
+    public static String passwordenc(String str){
+        String MD5 = "";
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte byteData[] =  md.digest();
+            StringBuffer sb  = new StringBuffer();
+
+            for(int i = 0; i <byteData.length; i++){
+                sb.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
+            }
+
+            MD5 = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            MD5 = null;
+        }
+        return MD5;
+    }
+
     @Transactional
     public void Join(User user) { //User회원가입
-//        String encodedPassword =  passwordEncoder.encode(user.getPassword()); //암호화
-//        user.setPassword(encodedPassword);
+        String password = user.getPassword();
+        String encpassword = passwordenc(password);
+        user.setPassword(encpassword);
         userRepository.save(user);//입력받은 정보를 저장
     }
 
     @Transactional
     public boolean Login(User user){
-       user =  userRepository.login(user.getUsername(),user.getPassword());
+
+        String password = user.getPassword();
+        String encpassword = passwordenc(password);
+
+       user =  userRepository.login(user.getUsername(),encpassword);
 
        if (user != null){
            return true;
