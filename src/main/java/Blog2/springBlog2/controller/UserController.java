@@ -78,7 +78,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/auth/userLogout")
+    @GetMapping("/auth/logout")
     public String userLogout(HttpSession session){
         session.invalidate();
         return "redirect:/";
