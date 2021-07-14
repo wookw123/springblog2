@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<User , Integer> {
     @Query(value = "SELECT * FROM user where username = ? AND password = ?" ,nativeQuery = true)
     public User login(String username , String password);
 
+    @Query(value = "SELECT * FROM user where username = ?" ,nativeQuery = true)
+    public User userinfo(String username );
+
 }

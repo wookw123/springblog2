@@ -1,18 +1,23 @@
 package Blog2.springBlog2.DTO;
 
 import Blog2.springBlog2.model.User;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.lang.reflect.Member;
+import java.sql.Timestamp;
 
 
 public class UserDTO {
-
 
     private String username;
     private String password;
     private String email;
     private String phone;
     private String address;
+
+    private Timestamp createDate;
+    private Timestamp updateDate;
+
 
     public UserDTO(String username, String password, String email, String phone, String address) {
 
@@ -22,6 +27,8 @@ public class UserDTO {
         this.phone = phone;
         this.address = address;
     }
+
+
 
     @Override
     public String toString() {
@@ -35,12 +42,17 @@ public class UserDTO {
     }
 
     public User toJoin(){
-        return new User(username,password,email,phone,address);
+        return new User(username,password,email,phone,address,createDate);
     }
 
     public User toLogin(){
         return new User(username,password);
     }
+
+    public User toUpdate(){
+        return new User(username,password,email,phone,address,updateDate);
+    }
+
 
 
 

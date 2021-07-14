@@ -5,7 +5,7 @@
 
 
     <div class="container">
-        <form>
+        <form th:action = "@{/auth/postwrite}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Enter Title" id="title">
             </div>
@@ -15,8 +15,9 @@
             </div>
         </form>
 
-        <button id="btn-save" class="btn btn-primary">작성하기</button>
+        <button type="submit" class="btn btn-primary">작성하기</button>
     </div>
+</div>
 
 
 <div th:insert="/common/footer :: footer"></div>

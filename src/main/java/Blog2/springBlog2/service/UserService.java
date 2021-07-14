@@ -68,5 +68,14 @@ public class UserService {
         return false;
     }
 
+    @Transactional
+    public void userUpdate(User user) {
+        String password = user.getPassword();
+        String encpassword = passwordenc(password);
+        user.setPassword(encpassword);
+        userRepository.save(user);
+        // userRepository.
+    }
+
 
 }

@@ -59,9 +59,6 @@ public class UserController {
 
         User user = userDTO.toLogin();
 
-        String username = user.getUsername();
-        String password = user.getPassword();
-
         HttpSession session = request.getSession();
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -81,6 +78,23 @@ public class UserController {
     @GetMapping("/auth/logout")
     public String userLogout(HttpSession session){
         session.invalidate();
+        return "redirect:/";
+    }
+
+    @GetMapping("/auth/userinfo")
+    public String userInfo(HttpSession session){
+        User user = (User) session.getAttribute("authinfo");
+        User userinfo = userRepository.userinfo(user.getUsername());
+        session.setAttribute("userinfo",userinfo);
+        return "/user/updateForm";
+
+    }
+
+    @PostMapping("/auth/userUpdate")
+    public String userUpdate(UserDTO userDTO){
+        User user = userDTO.toUpdate();
+        System.out.println(user.toString()+"컨트롤러에서 회원정보수정 체크 --------------------------");
+        userService.userUpdate(user);
         return "redirect:/";
     }
 
