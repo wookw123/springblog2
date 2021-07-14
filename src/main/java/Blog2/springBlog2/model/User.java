@@ -9,11 +9,10 @@ import java.sql.Timestamp;
 
 public class User {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //1씩 자동으로 올려줌
     private int id;
 
-    @Id
     @Column(nullable = false , length = 100, unique = true)//not null이고 중복제한
     private String username; //유저 아이디
 
@@ -34,14 +33,18 @@ public class User {
     @CreationTimestamp
     private Timestamp updateDate;
 
+
     @Override
     public String toString() {
-        return "userDTO{" +
+        return "User{" +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
                 '}';
     }
 

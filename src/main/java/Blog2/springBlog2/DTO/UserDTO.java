@@ -9,37 +9,42 @@ import java.sql.Timestamp;
 
 public class UserDTO {
 
+
     private String username;
     private String password;
     private String email;
     private String phone;
     private String address;
-
     private Timestamp createDate;
     private Timestamp updateDate;
 
 
-    public UserDTO(String username, String password, String email, String phone, String address) {
+    public UserDTO( String username, String password, String email, String phone, String address, Timestamp createDate, Timestamp updateDate) {
 
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
-
-
 
     @Override
     public String toString() {
-        return "userDTO{" +
+        return "UserDTO{" +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
                 '}';
     }
+
+
+
 
     public User toJoin(){
         return new User(username,password,email,phone,address,createDate);

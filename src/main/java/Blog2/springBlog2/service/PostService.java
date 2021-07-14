@@ -30,10 +30,13 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public Post postDetail(int id){
-
         return postRepository.findById(id).orElseThrow(()->{
                 return new IllegalArgumentException("글 상세보기 실패 : ID를 찾을수 없음");
         });
+    }
+
+    @Transactional(readOnly = true)
+    public void postWrite(){
 
     }
 

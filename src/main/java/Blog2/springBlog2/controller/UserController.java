@@ -85,7 +85,7 @@ public class UserController {
     public String userInfo(HttpSession session){
         User user = (User) session.getAttribute("authinfo");
         User userinfo = userRepository.userinfo(user.getUsername());
-        session.setAttribute("userinfo",userinfo);
+        System.out.println(userinfo.getId());
         return "/user/updateForm";
 
     }
@@ -93,7 +93,6 @@ public class UserController {
     @PostMapping("/auth/userUpdate")
     public String userUpdate(UserDTO userDTO){
         User user = userDTO.toUpdate();
-        System.out.println(user.toString()+"컨트롤러에서 회원정보수정 체크 --------------------------");
         userService.userUpdate(user);
         return "redirect:/";
     }

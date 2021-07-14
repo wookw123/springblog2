@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -27,6 +28,12 @@ public class PostController {
         return "index";
     }
 
+    @GetMapping("/auth/Write")
+    public String postwrite(Model model){
+
+        return "post/postWrite";
+    }
+
 
 
     @GetMapping("/post/{id}")
@@ -34,6 +41,8 @@ public class PostController {
         model.addAttribute("post" , postService.postDetail(id));
         return "post/postDetail"; //post폴더의 postDetail.html로 가렴
     }
+
+
 
 
 }
