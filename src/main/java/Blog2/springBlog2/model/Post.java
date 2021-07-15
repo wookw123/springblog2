@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 @Entity
 public class Post {
 
+    public Post() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,15 @@ public class Post {
 
     @CreationTimestamp
     private Timestamp updateDate;
+
+
+
+    public Post(String title, String content, User user_id, String slug) {
+        this.title = title;
+        this.content = content;
+        this.user = user_id;
+        this.slug = slug;
+    }
 
     public int getId() {
         return id;

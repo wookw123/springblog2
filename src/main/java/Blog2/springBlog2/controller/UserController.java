@@ -29,12 +29,12 @@ public class UserController {
 
     @GetMapping("/auth/login")
     public String loginForm(){
-        return "/user/loginForm";
+        return "user/loginForm";
     } //메인메뉴 상단 로그인 클릭시
 
     @GetMapping("/auth/join")
     public String joinForm(){
-        return "/user/joinForm";
+        return "user/joinForm";
     } //메인메뉴 상단 회원가입 클릭시
 
     @GetMapping("/auth/write")
@@ -85,8 +85,8 @@ public class UserController {
     public String userInfo(HttpSession session){
         User user = (User) session.getAttribute("authinfo");
         User userinfo = userRepository.userinfo(user.getUsername());
-        System.out.println(userinfo.getId());
-        return "/user/updateForm";
+        session.setAttribute("userinfo" , userinfo);
+        return "user/updateForm";
 
     }
 

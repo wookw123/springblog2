@@ -35,9 +35,9 @@ public class PostService {
         });
     }
 
-    @Transactional(readOnly = true)
-    public void postWrite(){
-
+    @Transactional
+    public void postWrite(Post post){
+        postRepository.save(post);
     }
 
 
