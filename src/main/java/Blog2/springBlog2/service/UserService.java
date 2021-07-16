@@ -29,6 +29,7 @@ public class UserService {
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
+            System.out.println();
             md.update(str.getBytes());
             byte byteData[] =  md.digest();
             StringBuffer sb  = new StringBuffer();
