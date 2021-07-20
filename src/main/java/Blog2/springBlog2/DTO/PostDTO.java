@@ -17,16 +17,6 @@ public class PostDTO {
         this.username = username;
     }
 
-    @Override
-    public String toString() {
-        return "PostDTO{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", slug='" + slug + '\'' +
-                ", user_id='" + username + '\'' +
-                '}';
-    }
-
     public Post toWrite(){
         return new Post(title,content,username,slug);
     }

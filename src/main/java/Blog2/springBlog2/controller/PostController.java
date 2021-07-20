@@ -45,16 +45,9 @@ public class PostController {
     public String postwrite(PostDTO postDTO, HttpSession session){
 
         User user = (User)session.getAttribute("userinfo");
-
-
-
         Post post = postDTO.toWrite();
-        postDTO.toWrite().setUser(user);
-        post.setUser(user);
-        System.out.println( postDTO.toString() + "--------");
-        System.out.println(post.getContent() + " --  "+post.getTitle());
-        
-        postService.postWrite(post);
+
+        postService.postWrite(post , user);
         return "redirect:/";
     }
 

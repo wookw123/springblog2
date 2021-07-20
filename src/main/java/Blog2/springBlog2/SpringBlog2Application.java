@@ -12,8 +12,8 @@ public class SpringBlog2Application {
 
 	public static void main(String[] args) {
 
-		passwordenc("1111");
-		//SpringApplication.run(SpringBlog2Application.class, args);
+		//passwordenc("1111");
+		SpringApplication.run(SpringBlog2Application.class, args);
 	}
 
 	public static String passwordenc(String str){

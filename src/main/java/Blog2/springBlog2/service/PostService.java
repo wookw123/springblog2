@@ -2,6 +2,7 @@ package Blog2.springBlog2.service;
 
 
 import Blog2.springBlog2.model.Post;
+import Blog2.springBlog2.model.User;
 import Blog2.springBlog2.repository.CommentRepository;
 import Blog2.springBlog2.repository.PostRepository;
 import Blog2.springBlog2.repository.UserRepository;
@@ -36,7 +37,8 @@ public class PostService {
     }
 
     @Transactional
-    public void postWrite(Post post){
+    public void postWrite(Post post , User user){
+        post.setUser(user);
         postRepository.save(post);
     }
 
