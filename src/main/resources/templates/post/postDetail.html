@@ -1,15 +1,14 @@
 <div th:insert="/common/header :: header"></div>
 
 
-<div class="container" >
-
-   <!-- <div>
-        글번호 : <span id="id"><i>${board.id}</i></span>
+<div class="container">
+    <div>
+        글번호 : <span id="id"  ><i th:text = ${post.id}></i></span>
         &nbsp&nbsp
-        작성자 : <span><i>${board.user.username}</i></span>
+        작성자 : <span><i th:text = ${post.user.username} ></i></span>
         &nbsp&nbsp
-        작성일 : <span><i>${board.createDate}</i></span>
-    </div>-->
+        작성일 : <span><i th:text = ${post.createDate}></i></span>
+    </div>
     <br/>
 
     <div class="form-group">
@@ -24,11 +23,12 @@
 
     <hr/>
     <br/><br/>
-    <button class = "btn btn-secondary" onclick = "history.back()" >목록</button>
-   <!-- <c:if test = "${board.user.id == principal.user.id}">-->
+
+    <tr th:if = "${post.user.username == session.userinfo.username}">
         <a href = "/post/${post.id}/updateForm" class = "btn btn-warning">수정</a>
         <button id = "btn_delete"  class = "btn btn-danger">삭제</button>
-    <!--</c:if>-->
+    </tr>
+    <button class = "btn btn-secondary" onclick = "history.back()" >목록</button>
 
     <hr/>
 
