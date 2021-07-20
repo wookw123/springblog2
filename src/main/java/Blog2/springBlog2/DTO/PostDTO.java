@@ -8,16 +8,25 @@ public class PostDTO {
     private String title;
     private String content;
     private String slug;
-    private User username;
 
-    public PostDTO(String title, String content, String slug, User username) {
+
+    @Override
+    public String toString() {
+        return "PostDTO{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", slug='" + slug + '\'' +
+                '}';
+    }
+
+    public PostDTO(String title, String content, String slug) {
         this.title = title;
         this.content = content;
         this.slug = title;
-        this.username = username;
+
     }
 
     public Post toWrite(){
-        return new Post(title,content,username,slug);
+        return new Post(title,content,slug);
     }
 }

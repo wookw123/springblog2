@@ -36,12 +36,13 @@ public class Post {
 
 
 
-    public Post(String title, String content, User user_id, String slug) {
+    public Post(String title, String content, String slug) {
         this.title = title;
         this.content = content;
-        this.user = user_id;
         this.slug = slug;
     }
+
+
 
     public int getId() {
         return id;

@@ -68,6 +68,8 @@ public class UserController {
 
         if (logincheck){//로그인 성공(아이디 비번 일치)
             session.setAttribute("authinfo",user); //session에 authinfo라는 이름으로 user정보 저장
+            User userinfo = userRepository.userinfo(user.getUsername());
+            session.setAttribute("userinfo" , userinfo);
             print.println("<script>alert('로그인 성공'); location.href = '/';</script>");
         }
         else {

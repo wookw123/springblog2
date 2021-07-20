@@ -46,7 +46,6 @@ public class PostController {
 
         User user = (User)session.getAttribute("userinfo");
         Post post = postDTO.toWrite();
-
         postService.postWrite(post , user);
         return "redirect:/";
     }
