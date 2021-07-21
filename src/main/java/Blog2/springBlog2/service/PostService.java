@@ -3,10 +3,8 @@ package Blog2.springBlog2.service;
 
 import Blog2.springBlog2.model.Post;
 import Blog2.springBlog2.model.User;
-import Blog2.springBlog2.repository.CommentRepository;
+import Blog2.springBlog2.repository.CommentsRepository;
 import Blog2.springBlog2.repository.PostRepository;
-import Blog2.springBlog2.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PostService {
     private final PostRepository postRepository;
-    private final CommentRepository commentRepository;
+    private final CommentsRepository commentsRepository;
 
-    public PostService(PostRepository postRepository, CommentRepository commentRepository) {
+    public PostService(PostRepository postRepository, CommentsRepository commentsRepository) {
         this.postRepository = postRepository;
-        this.commentRepository = commentRepository;
+        this.commentsRepository = commentsRepository;
     }
 
 

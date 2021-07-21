@@ -31,6 +31,9 @@ public class Comments {
     @CreationTimestamp
     private Timestamp updateDate;
 
+    public Comments(int userid, int postid, String content) {
+    }
+
     public int getId() {
         return id;
     }
