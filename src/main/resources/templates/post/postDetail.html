@@ -3,7 +3,7 @@
 
 <div class="container">
     <div>
-        글번호 : <span id="id"  ><i th:text = ${post.id}></i></span>
+        글번호 : <span id="id"><i th:text = ${post.id}></i></span>
         &nbsp&nbsp
         작성자 : <span><i th:text = ${post.user.username} ></i></span>
         &nbsp&nbsp
@@ -26,14 +26,14 @@
 
     <tr th:if = "${post.user.username == session.userinfo.username}"> <!--로그인한 유저중에 해당글을 쓴 사람만 수정 삭제버튼 나옴-->
         <a href = "/post/${post.id}/updateForm" class = "btn btn-warning">수정</a>
-        <a href = "/post/${post.id}/deleteForm" class = "btn btn-danger">삭제</button>
+        <a href = "/post/${post.id}/deleteForm" class = "btn btn-danger">삭제</a>
     </tr>
-    <button class = "btn btn-secondary" onclick = "history.back()" >목록</button>
+    <button class = "btn btn-secondary" onclick = "history.back()">목록</button>
 
     <hr/>
 
     <div class = "card"> <!--댓글쓰기 창-->
-        <form th:action = "@{/auth/commentswrite}" method="post">
+        <form th:action = "@{/}" method="post">
             <input type = "hidden" id = "userid" th:value = "${session.userinfo.id}"/>
             <input type = "hidden" id = "postid" th:value = "${post.id}"/>
             <div class = "card-body">
@@ -47,26 +47,26 @@
 
 
 
-    <br/>
+   <br/>
 
-   <!-- <div class = "card">
-        <div class = "card-header"> 댓글 목록 </div>
-        <ul id="reply-box" class="list-group">
-            <tr th:Each ="${board.replys}">
-                <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
-                    <div>${reply.content}</div>
-                    <div class="d-flex">
-                        <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+    <div class = "card">
+            <div class = "card-header"> 댓글 목록 </div>
+                <ul id="reply-box" class="list-group">
+                    <tr th:each ="comments: ${post.comments}">
+                        <li class="list-group-item d-flex justify-content-between">
+                           <div th:text = "${comments.comment}"></div>
+                            <div class="d-flex">
+                                <div class="font-italic"><span>작성자 : <i th:text = ${comments.user.username} ></i></span> &nbsp;</div>
 
-                        <tr th:if text = "${reply.user.id == authinfo.user.id}"> <%&#45;&#45;댓글작성유저만 삭제버튼이 나오게한다&#45;&#45;%>
-                            <button onclick="index.replyDelete(${board.id},${reply.id})" class="badge">삭제</button>
-                        </tr>
-                    </div>
-                </li>
-            <tr>
-
-        </ul>
-    </div>-->
+                             <!--   <tr th:if= "${comments.user.id == authinfo.user.id}"> &lt;!&ndash;댓글작성유저만 삭제버튼이 나오게한다&ndash;&gt;
+                                    <button onclick="index.replyDelete(${board.id},${reply.id})" class="badge">삭제</button>
+                                </tr>-->
+                            </div>
+                        </li>
+                    <tr>
+                </ul>
+            </div>
+        </div>
 
 
 </div>

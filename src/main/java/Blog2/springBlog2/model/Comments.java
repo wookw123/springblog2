@@ -23,7 +23,7 @@ public class Comments {
     @Column(nullable = false , length = 100)
     private String comment;
 
-
+    public Comments() {}
 
     @CreationTimestamp
     private Timestamp createDate;

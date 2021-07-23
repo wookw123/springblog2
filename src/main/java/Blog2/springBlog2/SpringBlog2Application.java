@@ -13,6 +13,7 @@ public class SpringBlog2Application {
 	public static void main(String[] args) {
 
 		//passwordenc("1111");
+		//System.out.println(passwordenc("1111") + "--------------");
 		SpringApplication.run(SpringBlog2Application.class, args);
 	}
 

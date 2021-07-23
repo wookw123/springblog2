@@ -1,9 +1,11 @@
 package Blog2.springBlog2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -28,11 +30,23 @@ public class Post {
     @Column(nullable = false , length = 500)
     private String content;
 
+
+
+    @OneToMany(mappedBy = "post" , fetch = FetchType.EAGER) //연관관계의 주인은 post이다
+    @OrderBy("id desc") //id기준으로 내림차순 정렬
+    private List<Comments> comments;
+
     @CreationTimestamp
     private Timestamp createDate;
 
     @CreationTimestamp
     private Timestamp updateDate;
+
+
+
+/*
+    @JsonIgnoreProperties({"post"})
+*/
 
 
 
@@ -98,5 +112,13 @@ public class Post {
 
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }
