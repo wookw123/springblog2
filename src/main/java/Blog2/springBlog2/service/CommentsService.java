@@ -1,5 +1,6 @@
 package Blog2.springBlog2.service;
 
+import Blog2.springBlog2.DTO.CommentsDTO;
 import Blog2.springBlog2.model.Comments;
 import Blog2.springBlog2.model.Post;
 import Blog2.springBlog2.model.User;
@@ -17,12 +18,8 @@ public class CommentsService {
     }
 
     @Transactional
-    public void commentWrite(User user, Post post, Comments comments){
-        comments.setUser(user);
-        comments.setPost(post);
-        System.out.println(user.toString() + "--------코멘트 유저정보--------");
+    public void commentWrite(CommentsDTO commentsDTO ){
 
-        System.out.println(post.toString() + "--------코멘트 글정보--------");
-        commentsRepository.save(comments);
+        commentsRepository.commentSave(commentsDTO.getComentuserid() , commentsDTO.getComentpostid() , commentsDTO.getComentcontent());
     }
 }

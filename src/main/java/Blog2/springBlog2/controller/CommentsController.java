@@ -1,14 +1,12 @@
 package Blog2.springBlog2.controller;
 
 import Blog2.springBlog2.DTO.CommentsDTO;
-import Blog2.springBlog2.model.Comments;
-import Blog2.springBlog2.model.Post;
-import Blog2.springBlog2.model.User;
 import Blog2.springBlog2.service.CommentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 public class CommentsController {
@@ -20,14 +18,14 @@ public class CommentsController {
     }
 
     @PostMapping("/auth/commentswrite")
-    public String commentwrite(CommentsDTO commentsDTO , HttpSession session){
-        User user = (User) session.getAttribute("userinfo");
-        Post post = (Post) session.getAttribute("postlist");
-        System.out.println(commentsDTO.toString());
-        Comments comments = commentsDTO.toWrite();
+    public String  commentwrite(CommentsDTO commentsDTO, HttpServletResponse response) throws IOException {
 
-        commentsService.commentWrite(user,post,comments);
-        return "redirect:/";
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter print = response.getWriter();
+        commentsService.commentWrite(commentsDTO );
+        return "redirect:/post/" + commentsDTO.getComentpostid();
+
     }
 
 }

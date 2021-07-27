@@ -35,10 +35,10 @@
 
     <div class = "card"> <!--댓글쓰기 창-->
         <form th:action = "@{/auth/commentswrite}" method="post">
-            <input type = "hidden" id = "userid" th:value = "${session.userinfo.id}"/>
-            <input type = "hidden" id = "postid" th:value = "${post.id}"/>
+            <input type = "hidden" id = "comentuserid" name="comentuserid" th:value = "${session.userinfo.id}"/>
+            <input type = "hidden" id = "comentpostid" name="comentpostid" th:value = "${post.id}"/>
             <div class = "card-body">
-                <textarea id="reply-content" class = "form-control" rows = "1"> </textarea>
+                <textarea id="reply-content" name="comentcontent" class = "form-control" rows = "1"> </textarea>
             </div>
             <div class = "card-footer">
                 <button type ="submit" class = "btn btn-primary">등록</button>
