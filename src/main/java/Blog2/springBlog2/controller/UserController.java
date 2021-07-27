@@ -85,11 +85,10 @@ public class UserController {
 
     @GetMapping("/auth/userinfo")
     public String userInfo(HttpSession session){
-        User user = (User) session.getAttribute("authinfo");
-        User userinfo = userRepository.userinfo(user.getUsername());
-        session.setAttribute("userinfo" , userinfo);
+        //ser user = (User) session.getAttribute("authinfo");
+        //User userinfo = userRepository.userinfo(user.getUsername());
+        //session.setAttribute("userinfo" , userinfo);
         return "user/updateForm";
-
     }
 
     @PostMapping("/auth/userUpdate")

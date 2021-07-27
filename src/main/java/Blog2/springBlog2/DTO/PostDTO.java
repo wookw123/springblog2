@@ -23,7 +23,6 @@ public class PostDTO {
         this.title = title;
         this.content = content;
         this.slug = title;
-
     }
 
     public Post toWrite(){
