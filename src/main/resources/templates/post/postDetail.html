@@ -34,14 +34,14 @@
     <hr/>
 
     <div class = "card"> <!--댓글쓰기 창-->
-        <form th:action = "@{/}" method="post">
+        <form th:action = "@{/auth/commentswrite}" method="post">
             <input type = "hidden" id = "userid" th:value = "${session.userinfo.id}"/>
             <input type = "hidden" id = "postid" th:value = "${post.id}"/>
             <div class = "card-body">
                 <textarea id="reply-content" class = "form-control" rows = "1"> </textarea>
             </div>
             <div class = "card-footer">
-                <button type ="submit"  class = "btn btn-primary">등록</button>
+                <button type ="submit" class = "btn btn-primary">등록</button>
             </div>
         </form>
     </div>
