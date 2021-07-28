@@ -14,6 +14,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -97,6 +98,18 @@ public class UserController {
         userService.userUpdate(user);
         return "redirect:/";
     }
+
+    @ResponseBody
+    @RequestMapping("/auth/joincheck")
+    public  String joinCheck(UserDTO userDTO,HttpServletRequest  request) throws IOException {
+
+        String result = null;
+        BufferedReader br = request.getReader(); //ajax에서 JSON형태가 아닌 text형태로 값을 보낼때 값을 읽어온다
+        result = userService.JoinCheck(br.readLine());
+        return result;
+    }
+
+
 
 
 

@@ -29,7 +29,7 @@ public class UserService {
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            System.out.println();
+
             md.update(str.getBytes());
             byte byteData[] =  md.digest();
             StringBuffer sb  = new StringBuffer();
@@ -56,6 +56,18 @@ public class UserService {
     }
 
     @Transactional
+    public String JoinCheck(String username){
+        User user;
+        user = userRepository.userinfo(username);
+        if(user != null) { //이미 가입한 회원이 있을때
+            return "ok";
+        }
+        else{
+            return "no"; //가입한 회원이 없을때
+        }
+    }
+
+    @Transactional
     public boolean Login(User user){
 
         String password = user.getPassword();
@@ -77,6 +89,9 @@ public class UserService {
         userRepository.save(user);
         // userRepository.
     }
+
+
+
 
 
 }

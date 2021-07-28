@@ -1,9 +1,7 @@
 package Blog2.springBlog2.DTO;
 
 import Blog2.springBlog2.model.User;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.lang.reflect.Member;
 import java.sql.Timestamp;
 
 
@@ -18,8 +16,15 @@ public class UserDTO {
     private Timestamp createDate;
     private Timestamp updateDate;
 
+    public String getUsername() {
+        return username;
+    }
 
-    public UserDTO( String username, String password, String email, String phone, String address, Timestamp createDate, Timestamp updateDate) {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public UserDTO(String username, String password, String email, String phone, String address, Timestamp createDate, Timestamp updateDate) {
 
         this.username = username;
         this.password = password;

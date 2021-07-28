@@ -34,6 +34,8 @@ public class User {
     private Timestamp updateDate;
 
 
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -128,5 +130,9 @@ public class User {
     public User(String username , String password){
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username) {
+        this.username = username;
     }
 }

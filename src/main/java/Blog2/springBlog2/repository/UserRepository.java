@@ -4,6 +4,7 @@ import Blog2.springBlog2.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.io.BufferedReader;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User , Integer> {
@@ -16,5 +17,9 @@ public interface UserRepository extends JpaRepository<User , Integer> {
 
     @Query(value = "SELECT * FROM user where username = ?" ,nativeQuery = true)
     public User userinfo(String username);
+
+
+
+
 
 }

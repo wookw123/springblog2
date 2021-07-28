@@ -18,11 +18,11 @@ public class CommentsController {
     }
 
     @PostMapping("/auth/commentswrite")
-    public String  commentwrite(CommentsDTO commentsDTO, HttpServletResponse response) throws IOException {
+    public String  commentwrite(CommentsDTO commentsDTO) {
 
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter print = response.getWriter();
+        //response.setCharacterEncoding("UTF-8");
+        //response.setContentType("text/html; charset=UTF-8");
+        //PrintWriter print = response.getWriter();
         commentsService.commentWrite(commentsDTO );
         return "redirect:/post/" + commentsDTO.getComentpostid();
 
