@@ -4,13 +4,22 @@
 <div class="container" th:if = "${session.authinfo == null}">
     <form th:action ="@{/auth/userJoin}" method = "post" onsubmit="return duplicationcheck()">
         <div class="form-group">
-            <label for="username">Username:</label> <label for="username"> </label>
+            <label for="username">Username:</label> <i style="display:none" id = "valid_id">사용할 수 있는 아이디 입니다</i>
+            <i style="display:none; color:red" id = "valid_id_no">이미 사용중인 아이디 입니다</i>
             <input type="text" 	class="form-control" placeholder="Enter username" id="username" name = "username" >
             <button type = "button" class="btn btn-info" onclick="idcheck()"> 중복확인 </button>
         </div>
+
         <div class="form-group">
-            <label for="password">password:</label> <input type="password"	class="form-control" placeholder="Enter password" id="password" name = "password">
+            <label for="password">password:</label> <i style="display:none; color:red" id ="valid_pw_no">비밀번호는 4자 이상이어야 합니다</i>
+            <input type="password"	class="form-control" placeholder="Enter password" id="password" name = "password">
         </div>
+
+        <div class="form-group">
+            <label for="password">passwordCheck:</label> <i style="display:none; color:red" id ="valid_pw_check">비밀번호가 일치하지 않습니다</i>
+            <input type="password"	class="form-control" placeholder="Enter passwordCheck" id="pw_check" name ="pw_check">
+        </div>
+
         <div class="form-group">
             <label for="email">Email address:</label> <input type="email" class="form-control" placeholder=	"Enter email" id="email" name = "email">
         </div>
@@ -36,6 +45,8 @@
     <!--아이디 중복체크-->
     function idcheck(){
         var username = $("#username").val();
+        var valid_id = document.getElementById("valid_id");
+        var valid_id_no = document.getElementById("valid_id_no");
 
         $.ajax({
             type : "POST",
@@ -46,10 +57,12 @@
 
         }).done(function(data){
             if(data === "ok"){
-                alert("이미 존재하는 아이디 입니다");
+                valid_id_no.style.display = "inline";
+                valid_id.style.display = "none";
                 checked = false;
             }else{
-                alert("사용할 수 있는 아이디 입니다");
+                valid_id.style.display = "inline";
+                valid_id_no.style.display = "none";
                 checked = true;
             }
         });
@@ -63,8 +76,42 @@
         return checked;
     }
 
+</script>
 
+
+
+<script type="text/javascript">
+
+    $(function() {
+        $("#password").keyup(function(){
+
+            var valid_pw_no = document.getElementById("valid_pw_no")
+            var pw = $("#password").val();
+
+            if(pw.length < 4 ){
+                valid_pw_no.style.display = "inline"
+            }else{
+               valid_pw_no.style.display = "none"
+            }
+        });
+    });
+
+    $(function() {
+        $("#pw_check").keyup(function(){
+
+            var valid_pw_check = document.getElementById("valid_pw_check");
+            var pw_check = $("#pw_check").val();
+            var pw =  $("#password").val();
+
+            if(pw != pw_check){
+                valid_pw_check.style.display = "inline"
+            }else{
+                valid_pw_check.style.display = "none"
+            }
+        });
+    });
 
 </script>
+
 
 <div th:insert="/common/footer :: footer"></div>
