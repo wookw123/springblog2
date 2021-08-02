@@ -40,6 +40,8 @@ public class PostService {
     @Transactional
     public void postWrite(Post post , User user){
         post.setUser(user);
+        System.out.println(post.getUser().toString());
+        System.out.println(post.toString());
         postRepository.save(post);
     }
 

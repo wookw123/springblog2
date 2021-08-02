@@ -4,7 +4,7 @@
 <div class="container" th:if = "${session.authinfo == null}">
     <form th:action ="@{/auth/userJoin}" method = "post" onsubmit="return duplicationcheck()">
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username">Username:</label> <label for="username"> </label>
             <input type="text" 	class="form-control" placeholder="Enter username" id="username" name = "username" >
             <button type = "button" class="btn btn-info" onclick="idcheck()"> 중복확인 </button>
         </div>
@@ -35,7 +35,6 @@
 
     <!--아이디 중복체크-->
     function idcheck(){
-
         var username = $("#username").val();
 
         $.ajax({
@@ -58,9 +57,13 @@
 
     <!--중복체크를 했는지 확인-->
     function duplicationcheck(){
+        if(checked === false){
         alert("아이디 중복체크를 하세요")
+        }
         return checked;
     }
+
+
 
 </script>
 

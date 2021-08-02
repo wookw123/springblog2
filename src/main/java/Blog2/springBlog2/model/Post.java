@@ -1,5 +1,6 @@
 package Blog2.springBlog2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -30,9 +31,8 @@ public class Post {
     @Column(nullable = false , length = 500)
     private String content;
 
-
-
-    @OneToMany(mappedBy = "post" , fetch = FetchType.EAGER) //연관관계의 주인은 post이다
+    @OneToMany(mappedBy = "post" , fetch = FetchType.EAGER,cascade = CascadeType.ALL) //연관관계의 주인은 post이다
+    @JsonIgnore
     @OrderBy("id desc") //id기준으로 내림차순 정렬
     private List<Comments> comments;
 
@@ -44,19 +44,27 @@ public class Post {
 
 
 
-/*
-    @JsonIgnoreProperties({"post"})
-*/
 
-
-
+   @JsonIgnoreProperties({"post"})
     public Post(String title, String content, String slug) {
         this.title = title;
         this.content = content;
         this.slug = slug;
     }
 
-
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", user=" + user +
+                ", title='" + title + '\'' +
+                ", slug='" + slug + '\'' +
+                ", content='" + content + '\'' +
+                ", comments=" + comments +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                '}';
+    }
 
     public int getId() {
         return id;
